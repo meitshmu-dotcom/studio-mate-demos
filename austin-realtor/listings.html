@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homes for sale in Central Austin | Marlow Home Co.</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<main>
+  <section class="wrap phero">
+    <p class="spec eyebrow" data-load="up">Listings · Central Austin</p>
+    <h1 class="h-xl" data-load="lines" style="margin-top:1rem">Homes for sale, <em>hand-picked.</em></h1>
+    <p class="lead" data-load="up">Every home here is one I've walked through myself. Tap any card for photos, the numbers and a showing.</p>
+  </section>
+
+  <section class="wrap" style="padding-bottom:clamp(4rem,9vw,7rem)">
+    <div class="filters" data-load="up">
+      <div class="chips" role="group" aria-label="Neighborhood"></div>
+      <div style="display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap">
+        <div class="chips beds" role="group" aria-label="Bedrooms"><button class="chip" aria-pressed="true" data-beds="0">Any beds</button><button class="chip" aria-pressed="false" data-beds="3">3+</button><button class="chip" aria-pressed="false" data-beds="4">4+</button></div>
+        <span class="count" aria-live="polite"></span>
+      </div>
+    </div>
+    <div class="cards grid"></div>
+    <p class="note" style="margin-top:2rem">Demo listings: addresses, prices and details are fictional. Photos: Unsplash.</p>
+  </section>
+
+  <section class="band pad">
+    <div class="wrap split" style="align-items:center">
+      <div><p class="spec" data-reveal="up">Not seeing it yet?</p><h2 class="h-lg" data-reveal="lines" style="margin-top:1rem">Get new homes <em>before they hit Zillow.</em></h2></div>
+      <form class="form" data-reveal="up" onsubmit="event.preventDefault();this.querySelector('.ok').hidden=false">
+        <div class="row"><label style="color:var(--limestone)">Name<input required></label><label style="color:var(--limestone)">Email<input type="email" required></label></div>
+        <label style="color:var(--limestone)">Budget<select><option>Up to $750k</option><option>$750k–$1.2M</option><option>$1.2M–$2M</option><option>$2M+</option></select></label>
+        <button class="btn light" type="submit">Send me early listings <span class="arr">→</span></button>
+        <p class="ok" hidden style="color:var(--sunset-soft)">You're on the list. (Demo: nothing is sent.)</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+gsap.registerPlugin(Flip);
+const state = { hood: decodeURIComponent(location.hash.slice(1)) || "All", beds: 0 };
+addEventListener("site:build", () => {
+  const grid = document.querySelector(".grid");
+  grid.innerHTML = LISTINGS.map(cardHTML).join("");
+  const hoods = ["All", ...Object.keys(HOODS)];
+  if (!hoods.includes(state.hood)) state.hood = "All";
+  const hc = document.querySelector(".filters .chips");
+  hc.innerHTML = hoods.map((h) => `<button class="chip" data-hood="${h}" aria-pressed="${h === state.hood}">${h}</button>`).join("");
+  apply(false);
+  document.querySelector(".filters").addEventListener("click", (e) => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    if (b.dataset.hood) { state.hood = b.dataset.hood; hc.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c === b)); }
+    else { state.beds = +b.dataset.beds; document.querySelectorAll(".beds .chip").forEach((c) => c.setAttribute("aria-pressed", c === b)); }
+    apply(true);
+  });
+});
+function apply(animate) {
+  const cards = [...document.querySelectorAll(".grid .card")];
+  const fState = animate && !Site.reduced ? Flip.getState(cards) : null;
+  let n = 0;
+  cards.forEach((c) => { const show = (state.hood === "All" || c.dataset.hood === state.hood) && +c.dataset.beds >= state.beds; c.style.display = show ? "" : "none"; n += show; });
+  document.querySelector(".count").textContent = `${n} home${n === 1 ? "" : "s"}`;
+  if (fState) Flip.from(fState, { duration: .7, ease: "power3.inOut", absolute: true, scale: true,
+    onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, scale: .9 }, { autoAlpha: 1, scale: 1, duration: .6 }),
+    onLeave: (els) => gsap.to(els, { autoAlpha: 0, scale: .9, duration: .4 }), onComplete: () => ScrollTrigger.refresh() });
+}
+</script>
+</body>
+</html>
