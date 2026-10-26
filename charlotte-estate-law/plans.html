@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estate plans & flat fees | Ashby Lane Estate Law</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<main>
+  <section class="wrap phero">
+    <p class="spec eyebrow" data-load="up">Plans & fees</p>
+    <h1 class="h-xl" data-load="lines" style="margin-top:1rem">Flat fees. <em>No billable hours.</em></h1>
+    <p class="lead" data-load="up">Answer five quick questions to see which plan fits your family. The fee you see is the fee you pay.</p>
+  </section>
+
+  <section class="wrap" style="padding-bottom:clamp(4rem,9vw,7rem)">
+    <div class="tool">
+      <div class="panel quiz" data-load="up">
+        <h3>Plan finder</h3>
+        <div class="q"><span>Are you married or in a partnership?</span><div class="chips" data-k="married" role="radiogroup"><button class="chip" role="radio" aria-checked="false" data-v="1">Yes</button><button class="chip" role="radio" aria-checked="true" data-v="0">No</button></div></div>
+        <div class="q"><span>Do you have children under 18?</span><div class="chips" data-k="kids" role="radiogroup"><button class="chip" role="radio" aria-checked="false" data-v="1">Yes</button><button class="chip" role="radio" aria-checked="true" data-v="0">No</button></div></div>
+        <div class="q"><span>Do you own a home?</span><div class="chips" data-k="home" role="radiogroup"><button class="chip" role="radio" aria-checked="false" data-v="1">Yes</button><button class="chip" role="radio" aria-checked="true" data-v="0">No</button></div></div>
+        <div class="q"><span>Is your family blended, or is there property in another state?</span><div class="chips" data-k="complex" role="radiogroup"><button class="chip" role="radio" aria-checked="false" data-v="1">Yes</button><button class="chip" role="radio" aria-checked="true" data-v="0">No</button></div></div>
+        <div class="q"><span>How important is keeping things private and out of court?</span><div class="chips" data-k="privacy" role="radiogroup"><button class="chip" role="radio" aria-checked="false" data-v="0">Not very</button><button class="chip" role="radio" aria-checked="true" data-v="1">Somewhat</button><button class="chip" role="radio" aria-checked="false" data-v="2">Very</button></div></div>
+      </div>
+      <aside class="est" aria-live="polite" data-load="up">
+        <p class="spec">Your recommended plan</p>
+        <p class="range rec-name">Essential</p>
+        <p class="spec" style="margin-top:.6rem;opacity:.75">Flat fee</p>
+        <p class="range rec-fee" style="font-size:clamp(2rem,4vw,2.8rem)">$0</p>
+        <p class="why" style="background:rgba(237,229,210,.1);color:var(--bp-line)"></p>
+        <p style="margin-top:1.4rem"><a class="btn light" href="contact.html">Book my free consultation <span class="arr">→</span></a></p>
+        <p class="small">Demo fees for illustration. A real site shows the firm's own fees.</p>
+      </aside>
+    </div>
+
+    <div class="pkgs" data-reveal="stagger">
+      <article class="pkg" data-plan="0"><span class="badge">RECOMMENDED</span><span class="spec" style="color:var(--oak)">Essential</span><span class="fee">$950</span><p style="color:var(--muted)">For single adults and couples just getting started.</p><ul><li>Will</li><li>Financial power of attorney</li><li>Healthcare directive</li><li>Two meetings, signing included</li></ul></article>
+      <article class="pkg" data-plan="1"><span class="badge">RECOMMENDED</span><span class="spec" style="color:var(--oak)">Family</span><span class="fee">$1,850</span><p style="color:var(--muted)">For parents who need guardians and a simple trust for the kids.</p><ul><li>Everything in Essential, for two</li><li>Guardian nominations</li><li>Children's trust inside the will</li><li>Family summary letter</li></ul></article>
+      <article class="pkg" data-plan="2"><span class="badge">RECOMMENDED</span><span class="spec" style="color:var(--oak)">Trust</span><span class="fee">$3,400</span><p style="color:var(--muted)">For homeowners who want privacy and no probate.</p><ul><li>Revocable living trust</li><li>Pour-over wills</li><li>All Family documents</li><li>Deed and account retitling</li></ul></article>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+const PLANS = [{ name: "Essential", fee: 950 }, { name: "Family", fee: 1850 }, { name: "Trust", fee: 3400 }];
+const a = { married: 0, kids: 0, home: 0, complex: 0, privacy: 1 };
+const shown = { fee: 0 };
+function pick() {
+  if (a.complex || a.privacy === 2 || (a.home && a.privacy >= 1 && (a.kids || a.married))) return [2, a.complex ? "A blended family or out-of-state property is exactly what a trust is for." : "You own a home and want privacy, so a trust keeps it out of probate court."];
+  if (a.kids) return [1, "You have young children, so naming guardians and a children's trust comes first."];
+  return [0, "The three core documents cover you today, and you can add a trust later."];
+}
+function update(instant) {
+  const [i, why] = pick();
+  document.querySelector(".rec-name").textContent = PLANS[i].name;
+  document.querySelector(".why").textContent = why;
+  gsap.to(shown, { fee: PLANS[i].fee, duration: instant ? 0 : .8, ease: "power3.out", onUpdate: () => (document.querySelector(".rec-fee").textContent = money(shown.fee)) });
+  document.querySelectorAll(".pkg").forEach((p) => p.classList.toggle("rec", +p.dataset.plan === i));
+  if (!instant && !Site.reduced) gsap.fromTo(".rec-name", { yPercent: 40, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: .5, ease: "power3.out" });
+}
+addEventListener("site:ready", () => {
+  document.querySelector(".quiz").addEventListener("click", (e) => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    const g = b.parentElement; a[g.dataset.k] = +b.dataset.v;
+    g.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-checked", c === b));
+    update(false);
+  });
+  update(true);
+});
+</script>
+</body>
+</html>

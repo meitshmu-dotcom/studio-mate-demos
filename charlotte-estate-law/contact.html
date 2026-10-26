@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a consultation | Ashby Lane Estate Law</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<main>
+  <section class="wrap phero">
+    <p class="spec eyebrow" data-load="up">Contact</p>
+    <h1 class="h-xl" data-load="lines" style="margin-top:1rem">Book a free <em>consultation.</em></h1>
+    <p class="lead" data-load="up">Thirty minutes, in our office or on video. You'll leave knowing which plan fits your family and exactly what it costs.</p>
+  </section>
+
+  <section class="wrap" style="padding-bottom:clamp(4rem,9vw,7rem)">
+    <div class="tool">
+      <form class="form panel" data-load="up" onsubmit="event.preventDefault();this.querySelector('.ok').hidden=false;this.querySelector('button').disabled=true">
+        <h3 style="font-size:1.8rem">Request a time</h3>
+        <div class="fld" style="margin-top:.4rem"><span class="lbl">I'm interested in</span><div class="chips intent" role="radiogroup" aria-label="Interest">
+          <button type="button" class="chip" role="radio" aria-checked="true">A will</button><button type="button" class="chip" role="radio" aria-checked="false">A trust</button><button type="button" class="chip" role="radio" aria-checked="false">Probate</button><button type="button" class="chip" role="radio" aria-checked="false">Not sure yet</button></div></div>
+        <div class="row"><label>Name<input required autocomplete="name"></label><label>Phone<input type="tel" required autocomplete="tel"></label></div>
+        <label>Email<input type="email" autocomplete="email"></label>
+        <label>Meeting<select><option>In our Charlotte office</option><option>Video call</option></select></label>
+        <label>Anything we should know? <span class="fine" style="font-weight:400">Please don't include confidential details yet.</span><textarea></textarea></label>
+        <button class="btn" type="submit">Request my consultation <span class="arr">→</span></button>
+        <p class="ok" hidden>Thank you! In the real site, the firm would call you within one business day. (Demo: nothing is sent.)</p>
+        <p class="fine">Contacting the firm does not create an attorney-client relationship.</p>
+      </form>
+      <aside data-load="up" style="display:grid;gap:1rem">
+        <div class="media-reveal" style="height:clamp(14rem,24vw,18rem)"><img data-u="1582555645330-9fa5f195e1ca" alt="Charlotte skyline at sunset" style="transform:none"></div>
+        <div class="est" style="position:relative;top:0">
+          <p class="spec">Office</p>
+          <p class="range" style="font-size:clamp(1.8rem,3vw,2.4rem)">[Office address]<br>Charlotte, NC</p>
+          <div class="comps">
+            <div><span>Phone</span><b>(704) 000-0000</b></div>
+            <div><span>Email</span><b>hello@example.com</b></div>
+            <div><span>Hours</span><b>[Hours]</b></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="wrap pad" style="padding-top:0">
+    <p class="spec eyebrow" data-reveal="up">Your first meeting</p>
+    <h2 class="h-lg" data-reveal="lines" style="margin:1rem 0 2.6rem">What to expect</h2>
+    <ol class="steps three" data-reveal="stagger">
+      <li><h3>We listen</h3><p>Your family, your home, your worries. No forms to fill in beforehand.</p></li>
+      <li><h3>We recommend</h3><p>Which plan fits, and why, in plain English.</p></li>
+      <li><h3>You decide</h3><p>A flat fee in writing. No pressure, no follow-up calls you didn't ask for.</p></li>
+    </ol>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+addEventListener("site:build", () => document.querySelectorAll("img[data-u]").forEach((i) => (i.src = U(i.dataset.u, 1400))));
+addEventListener("site:ready", () => document.querySelector(".intent").addEventListener("click", (e) => { const b = e.target.closest(".chip"); if (!b) return; b.parentElement.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-checked", c === b)); }));
+</script>
+</body>
+</html>
