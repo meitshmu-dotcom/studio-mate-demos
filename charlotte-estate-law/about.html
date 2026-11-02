@@ -6,9 +6,11 @@
 <title>About Claire Ashby | Ashby Lane Estate Law</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preload" href="assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("motion-ready")},4000)</script>
 </head>
 <body>
 <main>
@@ -20,12 +22,12 @@
         <p class="lead" data-load="up">I started Ashby Lane so Charlotte families could get a real plan from a real attorney, without the jargon or the open-ended bill.</p>
         <p data-load="up" style="margin-top:1rem"><span class="ph-note">Fictional attorney · the real site uses the attorney's own story, photo and bar details</span></p>
       </div>
-      <div class="portrait" data-load="up" aria-label="Attorney photo placeholder"><div><b>CA</b><span class="spec">[Attorney photo]</span></div></div>
+      <div class="portrait" data-load="up" role="img" aria-label="Placeholder for the attorney's photo"><div><b>CA</b><span class="spec">[Attorney photo]</span></div></div>
     </div>
   </section>
 
   <section class="wrap" style="padding-bottom:clamp(3rem,7vw,6rem)">
-    <div class="media-reveal" data-reveal="img"><img data-u="1548346624-cebe41d2433c" alt="Rocking chairs on a brick porch in evening light"></div>
+    <div class="media-reveal" data-reveal="img"><img src="assets/img/porch-1600.jpg" srcset="assets/img/porch-900.jpg 900w, assets/img/porch-1600.jpg 1600w" sizes="(max-width: 1360px) 94vw, 1312px" width="1600" height="1334" loading="lazy" decoding="async" alt="Rocking chairs on a brick porch in evening light"></div>
   </section>
 
   <section class="wrap pad" style="padding-top:0">
@@ -54,16 +56,15 @@
   <section class="wrap pad">
     <p class="spec eyebrow" data-reveal="up">Credentials</p>
     <p class="quote" data-reveal="lines" style="margin-top:1.4rem;max-width:60rem">"[Law school, year admitted to the North Carolina State Bar, professional memberships and community work.]"</p>
-    <p data-reveal="up" style="margin-top:1.2rem"><a class="btn" href="contact.html">Book a consultation <span class="arr">→</span></a></p>
+    <p data-reveal="up" style="margin-top:1.2rem"><a class="btn" href="contact.html">Book a free consultation <span class="arr" aria-hidden="true">→</span></a></p>
   </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/SplitText.min.js"></script>
+<script src="assets/vendor/CustomEase.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
 <script src="assets/site.js"></script>
-<script>addEventListener("site:build", () => document.querySelectorAll("img[data-u]").forEach((i) => (i.src = U(i.dataset.u, 1800))));</script>
 </body>
 </html>

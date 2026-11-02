@@ -1,0 +1,18 @@
+Vendored libraries (served from this site, so a visitor's browser contacts no third party).
+Files are unmodified copies from cdn.jsdelivr.net, downloaded 2026-11-02.
+
+gsap.min.js           GSAP 3.13.0           https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js
+ScrollTrigger.min.js  ScrollTrigger 3.13.0  https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js
+SplitText.min.js      SplitText 3.13.0      https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js
+CustomEase.min.js     CustomEase 3.13.0     https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js
+  License: GSAP Standard "No Charge" License, https://gsap.com/standard-license (notice kept in each file header).
+  (Flip is not used by any page, so it is not vendored.)
+
+lenis.min.js          Lenis 1.1.13          https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js
+  License: MIT, see LICENSE-lenis.txt
+
+Fonts: see ../fonts/fonts.css and ../fonts/OFL-*.txt (SIL Open Font License 1.1, from github.com/google/fonts).
+Photos: ../img/*.jpg, from Unsplash (Unsplash License, https://unsplash.com/license), resized and cropped for the web.
+  desk-1920.jpg     Unsplash photo id 1437419764061-2473afe69fc2
+  skyline-*.jpg     Unsplash photo id 1582555645330-9fa5f195e1ca
+  porch-*.jpg       Unsplash photo id 1548346624-cebe41d2433c

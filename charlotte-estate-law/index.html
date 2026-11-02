@@ -7,10 +7,11 @@
 <meta name="description" content="Concept site by Studio Mate: a fictional Charlotte estate planning firm.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500&display=swap">
+<link rel="preload" href="assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
-<script>document.documentElement.classList.add("js")</script>
+<script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("motion-ready")},4000)</script>
 </head>
 <body class="inked">
 <main>
@@ -23,10 +24,11 @@
             <p class="spec eyebrow" data-load="up">Ashby Lane Estate Law · Charlotte, NC</p>
             <h1 class="h-xl" data-load="lines" style="margin-top:1rem">Peace of mind, <em>signed and sealed.</em></h1>
             <p class="lead" data-load="up" style="margin-top:1.3rem">Wills, trusts and probate for Charlotte families. Two calm meetings, one flat fee, everything in plain English.</p>
-            <div class="acts" data-load="up"><a class="btn" href="contact.html">Book a free consultation <span class="arr">→</span></a><a class="btn ghost" href="plans.html">Which plan fits me?</a></div>
+            <div class="acts" data-load="up"><a class="btn" href="contact.html">Book a free consultation <span class="arr" aria-hidden="true">→</span></a><a class="btn ghost" href="plans.html">Which plan fits me?</a></div>
+            <p class="hero-note" data-load="up">Free 30-minute consultation · in our Charlotte office or on video</p>
           </div>
           <div class="hero-sign">
-            <svg class="hero-sig" viewBox="0 0 230 70" aria-hidden="true"><path d="M8 40 C10 24 26 10 34 16 C40 22 20 40 12 36 M40 34 C46 22 50 12 52 14 C50 26 48 36 54 36 C60 36 62 26 68 28 C72 30 68 38 76 36 C82 34 84 26 90 28 C94 30 92 38 100 34 M116 40 C122 22 132 8 136 14 C138 22 124 30 126 34 C134 26 146 24 148 32 C150 38 156 38 162 30 C166 26 168 34 174 34 C182 34 186 22 192 18 C190 32 188 42 196 40 C204 38 210 28 220 30 M14 50 C80 58 160 56 226 46"/></svg>
+            <svg class="hero-sig" viewBox="0 0 230 70" aria-hidden="true" focusable="false"><path d="M8 40 C10 24 26 10 34 16 C40 22 20 40 12 36 M40 34 C46 22 50 12 52 14 C50 26 48 36 54 36 C60 36 62 26 68 28 C72 30 68 38 76 36 C82 34 84 26 90 28 C94 30 92 38 100 34 M116 40 C122 22 132 8 136 14 C138 22 124 30 126 34 C134 26 146 24 148 32 C150 38 156 38 162 30 C166 26 168 34 174 34 C182 34 186 22 192 18 C190 32 188 42 196 40 C204 38 210 28 220 30 M14 50 C80 58 160 56 226 46"/></svg>
             <span class="sig-cap spec">Claire Ashby · Attorney at Law</span>
           </div>
         </div>
@@ -44,13 +46,17 @@
 
   <section class="chapter ink-chapter">
     <div class="wrap">
-      <p class="lead" data-reveal="up" style="max-width:40rem">Most families need all four. Some also need a trust. Each one is written for your family, in plain English. <a class="inline" href="services.html">What each one does →</a></p>
+      <p class="lead" data-reveal="up" style="max-width:40rem">Most families need all four. Some also need a trust. Each one is written for your family, in plain English. <a class="inline" href="services.html">What each one does <span aria-hidden="true">→</span></a></p>
       <ol class="docs" data-reveal="stagger">
         <li><span class="no">I</span><h3>Will</h3><p>Names a guardian for your children and says who receives what.</p></li>
         <li><span class="no">II</span><h3>Revocable trust</h3><p>Keeps your home out of probate and your affairs private.</p></li>
         <li><span class="no">III</span><h3>Power of attorney</h3><p>Lets someone you trust handle money matters if you can't.</p></li>
         <li><span class="no">IV</span><h3>Healthcare directive</h3><p>Puts your medical wishes in writing, so no one has to guess.</p></li>
       </ol>
+      <div class="chapter-cta" data-reveal="up">
+        <a class="btn light" href="plans.html">Find my plan in one minute <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="contact.html">Book a free consultation</a>
+      </div>
     </div>
   </section>
 
@@ -81,7 +87,7 @@
   </section>
 
   <!-- ═══ 3 · A drop falls on the page and the stain opens onto the desk, where the will is signed ═══ -->
-  <section class="spill spill-3" data-tex="1437419764061-2473afe69fc2" data-spill-end=".5" aria-label="The signing">
+  <section class="spill spill-3" data-tex="assets/img/desk-1920.jpg" data-spill-end=".5" aria-label="The signing">
     <div class="stage">
       <div class="under"></div>
       <canvas class="stain" aria-hidden="true"></canvas>
@@ -124,9 +130,9 @@
       <p class="lead" data-reveal="up">You'll know the full price before we start, and you'll work with your attorney directly, from the first coffee to the signing table.</p>
     </div>
     <div class="stats" data-reveal="stagger" style="margin-top:3rem">
-      <div><b data-count="2">0</b><span class="spec">Meetings, start to finish</span></div>
-      <div><b data-count="14" data-suf=" days">0</b><span class="spec">Typical time to signing</span></div>
-      <div><b data-count="900" data-suf="+">0</b><span class="spec">Families served</span></div>
+      <div><b data-count="2">2</b><span class="spec">Meetings, start to finish</span></div>
+      <div><b data-count="14" data-suf=" days">14 days</b><span class="spec">Typical time to signing</span></div>
+      <div><b data-count="900" data-suf="+">900+</b><span class="spec">Families served</span></div>
       <div><b>$0</b><span class="spec">For the first consultation</span></div>
     </div>
     <p class="note">Demo figures for illustration. A real site shows the firm's own numbers.</p>
@@ -139,9 +145,9 @@
         <p class="spec eyebrow" data-reveal="up">Not sure where to start?</p>
         <h2 class="h-lg" data-reveal="lines" style="margin-top:1rem">Find your plan <em>in one minute.</em></h2>
         <p class="lead" data-reveal="up" style="margin-top:1.2rem">Five quick questions, and you'll see which plan fits your family, with the flat fee up front.</p>
-        <p data-reveal="up" style="margin-top:2rem"><a class="btn" href="plans.html">Find my plan <span class="arr">→</span></a></p>
+        <p data-reveal="up" style="margin-top:2rem"><a class="btn" href="plans.html">Find my plan <span class="arr" aria-hidden="true">→</span></a></p>
       </div>
-      <div class="media-reveal" data-reveal="img" style="height:clamp(16rem,40vw,30rem)"><img data-u="1582555645330-9fa5f195e1ca" alt="Charlotte skyline at sunset"></div>
+      <div class="media-reveal" data-reveal="img" style="height:clamp(16rem,40vw,30rem)"><img src="assets/img/skyline-1400.jpg" srcset="assets/img/skyline-800.jpg 800w, assets/img/skyline-1400.jpg 1400w" sizes="(max-width: 860px) 92vw, 45vw" width="1400" height="1166" loading="lazy" decoding="async" alt="Charlotte skyline at sunset"></div>
     </div>
   </section>
 
@@ -152,9 +158,9 @@
         <p class="spec eyebrow" data-reveal="up">When you're ready</p>
         <h2 class="h-xl" data-reveal="lines" style="margin-top:1rem">Everything <em>in order.</em></h2>
         <p class="lead" data-reveal="up" style="margin-top:1.2rem">A free thirty-minute consultation, in our Charlotte office or on video.</p>
-        <p style="margin-top:2rem" data-reveal="up"><a class="btn" href="contact.html">Book a free consultation <span class="arr">→</span></a></p>
+        <p style="margin-top:2rem" data-reveal="up"><a class="btn" href="contact.html">Book a free consultation <span class="arr" aria-hidden="true">→</span></a></p>
       </div>
-      <svg class="firm-seal" viewBox="0 0 220 220" aria-label="Ashby Lane seal">
+      <svg class="firm-seal" viewBox="0 0 220 220" role="img" aria-label="The Ashby Lane seal">
         <defs>
           <filter id="bleed" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="16" class="bleed-amt"/></filter>
           <path id="sealRing" d="M110 110 m-70 0 a70 70 0 1 1 140 0 a70 70 0 1 1 -140 0"/>
@@ -172,16 +178,15 @@
   </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/SplitText.min.js"></script>
+<script src="assets/vendor/CustomEase.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
 <script src="assets/site.js"></script>
 <script src="assets/hero.js"></script>
 <script src="assets/spill.js"></script>
 <script>
-addEventListener("site:build", () => document.querySelectorAll("img[data-u]").forEach((i) => (i.src = U(i.dataset.u, 1400))));
 addEventListener("site:ready", () => {
   const sig = document.querySelector(".will .sig path"), stamp = document.querySelector(".will .stamp"), date = document.querySelector(".will .date");
   gsap.set(sig, { strokeDasharray: 1, strokeDashoffset: Site.reduced ? 0 : 1 });

@@ -80,7 +80,7 @@ void main(){
         out.tex = t; out.texW = img.naturalWidth; out.texH = img.naturalHeight; out.dirty = true;
         gl.uniform1i(u.uTex, 0); gl.uniform1f(u.uHasTex, 1);
       };
-      img.src = texUrl;
+      out.loadTex = () => { if (!img.src) img.src = texUrl; }; // fetched only when the stage comes near (see below)
     }
     return out;
   }
@@ -97,8 +97,12 @@ void main(){
       const stage = $(".stage", sec), canvas = $("canvas.stain", stage), over = $(".over", stage), drop = $(".drop", stage);
       const mode = sec.dataset.mode || "spill";
       const end = +(sec.dataset.spillEnd || 1); // fraction of the section the spill itself takes (the rest belongs to the chapter)
-      const g = makeGL(canvas, sec.dataset.tex ? U(sec.dataset.tex, 2000) : null);
+      const g = makeGL(canvas, sec.dataset.tex || null); // a self-hosted photo (assets/img), so the texture is same-origin
       if (!g) sec.classList.add("no-gl");
+      if (g?.loadTex) { // the desk photo is ~350 KB: fetch it two screens before its stage, not on page load
+        const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { g.loadTex(); io.disconnect(); } }, { rootMargin: "200% 0px" });
+        io.observe(sec);
+      }
       const s = { sec, stage, canvas, over, drop, mode, end, g, seed: 3.7 + i * 11.3, p: 0, shown: -1, R: 0,
         st: ScrollTrigger.create({ trigger: sec, start: "top top", end: "bottom bottom" }) };
       return s;

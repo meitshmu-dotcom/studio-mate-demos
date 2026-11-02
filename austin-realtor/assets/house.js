@@ -1,9 +1,13 @@
 // Home page signature: a blueprint traces a real Austin house, the photo paints in through the lines
 // in afternoon light, then warms to golden hour with string lights hung from the roof.
 // One scrubbed timeline drives the drawing, the photo, the HUD (stage, sq ft, time of day) and the captions.
-// Photo: Unsplash (photo-1757524492552). Line coordinates are traced on the same 1200×675 frame.
+// Photo: Unsplash (photo-1757524492552, Unsplash License), self-hosted as the same 16:9 crop in two widths.
+// Line coordinates are traced on the same 1200×675 frame.
 (() => {
-  const PHOTO = "https://images.unsplash.com/photo-1757524492552-d47a66a2b63e?auto=format&fit=crop&w=2400&h=1350&q=80";
+  // pick the smallest file that stays sharp: portrait shows 900 of the 1200 units across the width, landscape fills the screen
+  const tall = innerWidth / innerHeight < .9;
+  const cssW = tall ? innerWidth * 1200 / 900 : Math.max(innerWidth, innerHeight * 1200 / 675);
+  const PHOTO = `assets/img/hero-${cssW * (window.devicePixelRatio || 1) > 1700 ? 2400 : 1600}.webp`;
   const L = (d, cls = "") => `<path class="ln ${cls}" pathLength="1" d="${d}"/>`;
   const R = (x1, y1, x2, y2) => `M${x1} ${y1}H${x2}V${y2}H${x1}Z`;
 
@@ -168,7 +172,16 @@
     const tone = () => caps.classList.toggle("glow", tl.time() >= 4.9);
     tl.eventCallback("onUpdate", ((orig) => function () { orig(); tone(); })(tl.eventCallback("onUpdate")));
 
-    if (reduced) { tl.progress(1); return; }
+    if (reduced) {
+      // no scroll film: one still of the finished home with the headline and CTAs on it,
+      // then the four stages as a plain list under it (html.rm-scene in site.css)
+      tl.progress(1);
+      gsap.set([".hero-copy", ...capEls], { clearProps: "all" });
+      caps.classList.remove("glow");
+      build.appendChild(caps);
+      document.documentElement.classList.add("rm-scene");
+      return;
+    }
     if (/[?&]trace\b/.test(location.search)) { // QA: lines over the finished photo, to check the tracing
       tl.progress(1); gsap.set($(".lines", svg), { opacity: 1 }); gsap.set($$(".g-lot, .g-frame", svg), { opacity: 1 });
       gsap.set($$(".ln", svg), { strokeDashoffset: 0, stroke: "#FF2D55" }); gsap.set(capEls, { autoAlpha: 0 }); return;

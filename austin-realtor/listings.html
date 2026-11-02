@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Homes for sale in Central Austin | Marlow Home Co.</title>
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("motion-ready")},6000)</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -22,33 +25,38 @@
     <div class="filters" data-load="up">
       <div class="chips" role="group" aria-label="Neighborhood"></div>
       <div style="display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap">
-        <div class="chips beds" role="group" aria-label="Bedrooms"><button class="chip" aria-pressed="true" data-beds="0">Any beds</button><button class="chip" aria-pressed="false" data-beds="3">3+</button><button class="chip" aria-pressed="false" data-beds="4">4+</button></div>
+        <div class="chips beds" role="group" aria-label="Bedrooms"><button class="chip" type="button" aria-pressed="true" data-beds="0">Any beds</button><button class="chip" type="button" aria-pressed="false" data-beds="3">3+</button><button class="chip" type="button" aria-pressed="false" data-beds="4">4+</button></div>
         <span class="count" aria-live="polite"></span>
       </div>
     </div>
     <div class="cards grid"></div>
-    <p class="note" style="margin-top:2rem">Demo listings: addresses, prices and details are fictional. Photos: Unsplash.</p>
+    <p class="note" style="margin-top:2rem">Demo listings: addresses, prices and details are fictional. Photos: Unsplash (Unsplash License).</p>
   </section>
 
   <section class="band pad">
     <div class="wrap split" style="align-items:center">
-      <div><p class="spec" data-reveal="up">Not seeing it yet?</p><h2 class="h-lg" data-reveal="lines" style="margin-top:1rem">Get new homes <em>before they hit Zillow.</em></h2></div>
-      <form class="form" data-reveal="up" onsubmit="event.preventDefault();this.querySelector('.ok').hidden=false">
-        <div class="row"><label style="color:var(--limestone)">Name<input required></label><label style="color:var(--limestone)">Email<input type="email" required></label></div>
-        <label style="color:var(--limestone)">Budget<select><option>Up to $750k</option><option>$750k–$1.2M</option><option>$1.2M–$2M</option><option>$2M+</option></select></label>
-        <button class="btn light" type="submit">Send me early listings <span class="arr">→</span></button>
-        <p class="ok" hidden style="color:var(--sunset-soft)">You're on the list. (Demo: nothing is sent.)</p>
+      <div><p class="spec" data-reveal="up">Not seeing it yet?</p><h2 class="h-lg" id="early-title" data-reveal="lines" style="margin-top:1rem">Get new homes <em>before they hit Zillow.</em></h2></div>
+      <form class="form" id="early" data-demo novalidate aria-labelledby="early-title" data-ok="Demo only: nothing was sent. On a real agent's site, you'd now get an email when a home in your range is about to list.">
+        <p class="req-note">All fields required unless marked optional.</p>
+        <div class="row">
+          <div class="field"><label for="el-name">Name</label><input id="el-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="el-email">Email</label><input id="el-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        </div>
+        <div class="field"><label for="el-budget">Budget <span class="opt">(optional)</span></label><select id="el-budget" name="budget"><option value="">Any budget</option><option>Up to $750k</option><option>$750k–$1.2M</option><option>$1.2M–$2M</option><option>$2M+</option></select></div>
+        <button class="btn light" type="submit">Send me early listings <span class="arr" aria-hidden="true">→</span></button>
+        <p class="hint">Next step: an email when a home in your range is about to list. Unsubscribe anytime.</p>
+        <p class="form-msg" role="status"></p>
       </form>
     </div>
   </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/gsap.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/SplitText.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/CustomEase.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/Flip.min.js"></script>
+<script src="assets/vendor/lenis-1.1.13/lenis.min.js"></script>
 <script src="assets/site.js"></script>
 <script>
 gsap.registerPlugin(Flip);
@@ -59,7 +67,7 @@ addEventListener("site:build", () => {
   const hoods = ["All", ...Object.keys(HOODS)];
   if (!hoods.includes(state.hood)) state.hood = "All";
   const hc = document.querySelector(".filters .chips");
-  hc.innerHTML = hoods.map((h) => `<button class="chip" data-hood="${h}" aria-pressed="${h === state.hood}">${h}</button>`).join("");
+  hc.innerHTML = hoods.map((h) => `<button class="chip" type="button" data-hood="${h}" aria-pressed="${h === state.hood}">${h}</button>`).join("");
   apply(false);
   document.querySelector(".filters").addEventListener("click", (e) => {
     const b = e.target.closest(".chip"); if (!b) return;

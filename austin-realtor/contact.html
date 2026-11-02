@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact | Marlow Home Co.</title>
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("motion-ready")},6000)</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -20,21 +23,26 @@
 
   <section class="wrap" style="padding-bottom:clamp(4rem,9vw,7rem)">
     <div class="tool" style="grid-template-columns:1.1fr .9fr">
-      <form class="form panel" data-load="up" onsubmit="event.preventDefault();this.querySelector('.ok').hidden=false;this.querySelector('button').disabled=true">
-        <h3 style="font-size:1.6rem">Send a note</h3>
-        <div class="fld" style="margin-top:.4rem"><span class="lbl">I'm looking to</span><div class="chips intent" role="radiogroup" aria-label="Intent">
-          <button type="button" class="chip" role="radio" aria-checked="true">Buy</button><button type="button" class="chip" role="radio" aria-checked="false">Sell</button><button type="button" class="chip" role="radio" aria-checked="false">Both</button><button type="button" class="chip" role="radio" aria-checked="false">Just exploring</button></div></div>
-        <div class="row"><label>Name<input required autocomplete="name"></label><label>Phone<input type="tel" required autocomplete="tel"></label></div>
-        <label>Email<input type="email" autocomplete="email"></label>
-        <label>Anything I should know?<textarea placeholder="Timing, neighborhoods, must-haves…"></textarea></label>
-        <button class="btn" type="submit">Send <span class="arr">→</span></button>
-        <p class="ok" hidden>Thanks! In the real site this lands on June's phone with your answers. (Demo: nothing is sent.)</p>
+      <form class="form panel" id="note" data-demo novalidate aria-labelledby="note-title" data-ok="Demo only: nothing was sent. On a real agent's site, your note would go straight to June's phone.">
+        <h2 class="form-title" id="note-title">Send a note</h2>
+        <p class="req-note">All fields required unless marked optional.</p>
+        <fieldset class="fld" style="margin-top:.2rem"><legend class="lbl">I'm looking to</legend><div class="chips intent">
+          <label class="chip"><input type="radio" name="intent" value="buy" checked>Buy</label><label class="chip"><input type="radio" name="intent" value="sell">Sell</label><label class="chip"><input type="radio" name="intent" value="both">Both</label><label class="chip"><input type="radio" name="intent" value="exploring">Just exploring</label></div></fieldset>
+        <div class="row">
+          <div class="field"><label for="ct-name">Name</label><input id="ct-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="ct-phone">Phone</label><input id="ct-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        </div>
+        <div class="field"><label for="ct-email">Email <span class="opt">(optional)</span></label><input id="ct-email" name="email" type="email" autocomplete="email" inputmode="email"></div>
+        <div class="field"><label for="ct-msg">Anything I should know? <span class="opt">(optional)</span></label><textarea id="ct-msg" name="message" placeholder="Timing, neighborhoods, must-haves…"></textarea></div>
+        <button class="btn" type="submit">Request a call back <span class="arr" aria-hidden="true">→</span></button>
+        <p class="hint">Next step: June calls you back the same day.</p>
+        <p class="form-msg" role="status"></p>
         <p class="fine">By sending, you agree to be contacted about your request.</p>
       </form>
       <aside class="est" data-load="up" style="position:relative;top:0">
         <p class="spec">Office</p>
         <p class="range" style="font-size:clamp(1.8rem,3vw,2.4rem)">[Brokerage address]<br>Austin, TX</p>
-        <svg viewBox="0 0 400 260" style="width:100%;margin-top:1.4rem" aria-label="Stylized map of Central Austin">
+        <svg viewBox="0 0 400 260" style="width:100%;margin-top:1.4rem" role="img" aria-label="Stylized map of Central Austin">
           <path d="M0 150 C80 130 120 175 200 150 S330 120 400 140" fill="none" stroke="#7FB2D9" stroke-width="10" stroke-linecap="round" opacity=".55"/>
           <g fill="none" stroke="#CFE2F5" stroke-width="1.4" opacity=".55"><path d="M40 0V260M120 0V260M200 0V260M280 0V260M360 0V260M0 50H400M0 210H400"/><path d="M60 260L230 0M300 260L360 0" stroke-width="2.4"/></g>
           <g class="pin"><circle cx="214" cy="104" r="26" fill="#D9692F" opacity=".25"/><circle cx="214" cy="104" r="9" fill="#D9692F"/></g>
@@ -51,15 +59,14 @@
   </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/gsap.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/SplitText.min.js"></script>
+<script src="assets/vendor/gsap-3.13.0/CustomEase.min.js"></script>
+<script src="assets/vendor/lenis-1.1.13/lenis.min.js"></script>
 <script src="assets/site.js"></script>
 <script>
 addEventListener("site:ready", () => {
-  document.querySelector(".intent").addEventListener("click", (e) => { const b = e.target.closest(".chip"); if (!b) return; b.parentElement.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-checked", c === b)); });
   if (!Site.reduced) gsap.to(".pin circle:first-child", { attr: { r: 40 }, opacity: 0, duration: 1.8, repeat: -1, ease: "power2.out" });
 });
 </script>
