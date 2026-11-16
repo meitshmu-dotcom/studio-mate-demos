@@ -1,0 +1,1 @@
+window.FILM = {"fps": 48, "dur": 36.479, "house": 10.042, "doorClosed": 14.042, "doorOpen": 16.542, "tour": true, "rooms": {"step": 0.175, "hall": 0.4, "living": 0.56, "kitchen": 0.73, "porch": 0.93}};
